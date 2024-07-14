@@ -19,7 +19,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:id="@+id/button_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="50dp"
+            android:background="#F0D800"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/bot_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_container"/>
 
+        <FrameLayout
+            android:id="@+id/bot_container"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#070E37"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/top_container"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#3F51B5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_program" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
