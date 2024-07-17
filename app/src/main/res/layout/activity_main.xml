@@ -1,53 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/name_program"
+    <LinearLayout
+        android:id="@+id/button_list"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_background"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/bot_container"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_container">
+
+        <Button
+            android:id="@+id/menu"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textSize="22sp"
-            android:text="Kino Rai"
-            android:background="#E02196F3"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:text="Меню"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/favourites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:text="избранное"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/watch_later"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:text="посмотреть позже"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/compilations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:text="подборки"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:text="настройки"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/bot_container"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#070E37"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:autoLink="web"
+        android:text="Постеры взяты с Google.com"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_container"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/top_container"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="15dp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/button_list"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="50dp"
-            android:background="#F0D800"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/bot_container"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/top_container"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <FrameLayout
-            android:id="@+id/bot_container"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="#070E37"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster1" />
 
-        <FrameLayout
-            android:id="@+id/top_container"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="#3F51B5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_program" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster3" />
 
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster2" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster4" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

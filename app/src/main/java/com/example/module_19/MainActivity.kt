@@ -1,47 +1,36 @@
 package com.example.module_19
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.module_19.ui.theme.Module_19Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Module_19Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        val menu = findViewById<Button>(R.id.menu)
+        menu.setOnClickListener{
+            Toast.makeText(this,"Главное меню", Toast.LENGTH_SHORT).show()
         }
-    }
-}
+        val favorites = findViewById<Button>(R.id.favourites)
+        favorites.setOnClickListener{
+            Toast.makeText(this,"Избранное", Toast.LENGTH_SHORT).show()
+        }
+        val watch_later = findViewById<Button>(R.id.watch_later)
+        watch_later.setOnClickListener{
+            Toast.makeText(this,"Посмотреть позже!", Toast.LENGTH_SHORT).show()
+        }
+        val compilations = findViewById<Button>(R.id.compilations)
+        compilations.setOnClickListener {
+            Toast.makeText(this,"Подборки фильмов , сериалов",Toast.LENGTH_SHORT).show()
+        }
+        val setting = findViewById<Button>(R.id.settings)
+        setting.setOnClickListener {
+            Toast.makeText(this,"Настройки",Toast.LENGTH_SHORT).show()
+        }
+        }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Module_19Theme {
-        Greeting("Android")
     }
-}
