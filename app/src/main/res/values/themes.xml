@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Module_19" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.Module_19" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/purple_700</item>
         <item name="android:forceDarkAllowed">true</item>
     </style>
