@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initNavigation() {
-        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
+        /*val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
         topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.settings -> {
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
                 else -> false
             }
-        }
+        }*/
         val bottom_navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottom_navigation.setOnNavigationItemSelectedListener {
 
