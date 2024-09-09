@@ -1,13 +1,11 @@
 package com.example.module_19.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.module_19.DetailsFragment
 import com.example.module_19.Film
 import com.example.module_19.FilmListRecyclerAdapter
 import com.example.module_19.MainActivity
@@ -17,7 +15,7 @@ import com.example.module_19.databinding.FragmentHomeBinding
 
 @Suppress("UNREACHABLE_CODE")
 class HomeFragment : Fragment() {
-    private lateinit var homeBinding: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
 
     val filmsDataBase = listOf(
@@ -64,14 +62,14 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        homeBinding = FragmentHomeBinding.inflate(layoutInflater)
-        return homeBinding.root
+        binding = FragmentHomeBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val main_recycler = homeBinding.mainRecycler
+        val main_recycler = binding.mainRecycler
         //находим наш RV
         main_recycler.apply {
             //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,

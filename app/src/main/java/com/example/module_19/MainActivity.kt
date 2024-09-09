@@ -1,15 +1,14 @@
 package com.example.module_19
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module_19.databinding.ActivityMainBinding
+import com.example.module_19.fragment.FavoritesFragment
 import com.example.module_19.fragment.HomeFragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -74,7 +73,11 @@ class MainActivity : AppCompatActivity() {
 
             when (it.itemId) {
                 R.id.favourites -> {
-                    Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_placeholder,FavoritesFragment())
+                        .addToBackStack(null)
+                        .commit()
                     true
                 }
 
@@ -94,7 +97,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount == 1){
+        if (supportFragmentManager.backStackEntryCount == 1) {
             AlertDialog.Builder(ContextThemeWrapper(this, R.style.MyDialog))
                 .setTitle("Вы хотите выйти?")
                 .setIcon(R.drawable.ic_very_dissatisfied_24)
@@ -107,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Решайся", Toast.LENGTH_SHORT).show()
                 }
                 .show()
-        }else {
+        } else {
             super.onBackPressed()
         }
     }
