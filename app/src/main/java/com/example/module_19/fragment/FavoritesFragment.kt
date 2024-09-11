@@ -14,7 +14,9 @@ import com.example.module_19.databinding.FragmentFavoritesBinding
 
 class FavoritesFragment : Fragment() {
     private lateinit var binding: FragmentFavoritesBinding
+
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

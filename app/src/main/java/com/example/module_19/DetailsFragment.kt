@@ -10,6 +10,7 @@ import com.example.module_19.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
     private lateinit var film: Film
+
     private lateinit var binding: FragmentDetailsBinding
 
     override fun onCreateView(
@@ -33,7 +34,7 @@ class DetailsFragment : Fragment() {
                 details_fab_favorites.setImageResource(R.drawable.ic_baseline_favorite_24)
                 film.isInFavorites = true
             } else {
-                details_fab_favorites.setImageResource(R.drawable.ic_round_favorite)
+                details_fab_favorites.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 film.isInFavorites = false
             }
         }
@@ -66,7 +67,7 @@ class DetailsFragment : Fragment() {
 
         binding.detailsFabFavorites.setImageResource(
             if (film.isInFavorites) R.drawable.ic_baseline_favorite_24
-            else R.drawable.ic_round_favorite
+            else R.drawable.ic_baseline_favorite_border_24
         )
     }
 
