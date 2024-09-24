@@ -16,6 +16,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
+    private var backPressed = 0L
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private lateinit var bottom_navigation: BottomNavigationView
@@ -75,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.favourites -> {
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.fragment_placeholder,FavoritesFragment())
+                        .replace(R.id.fragment_placeholder, FavoritesFragment())
                         .addToBackStack(null)
                         .commit()
                     true
@@ -96,6 +98,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    /* Функция выхода с подтверждением в отдельном окна */
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount == 1) {
             AlertDialog.Builder(ContextThemeWrapper(this, R.style.MyDialog))

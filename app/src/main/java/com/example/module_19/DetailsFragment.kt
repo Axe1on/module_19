@@ -2,13 +2,23 @@ package com.example.module_19
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.transition.Fade
+import androidx.transition.Slide
+import androidx.transition.Visibility
 import com.example.module_19.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
+
+    init {
+        enterTransition = Fade(Visibility.MODE_IN).apply { duration = 800}
+        reenterTransition = Fade(Visibility.MODE_OUT).apply { duration = 800;mode = Fade.MODE_OUT}
+    }
+
     private lateinit var film: Film
 
     private lateinit var binding: FragmentDetailsBinding
@@ -51,7 +61,7 @@ class DetailsFragment : Fragment() {
             //Указываем MIME тип, чтобы система знала, какое приложения предложить
             intent.type = "text/plain"
             //Запускаем наше активити
-            startActivity(Intent.createChooser(intent,"Share To:"))
+            startActivity(Intent.createChooser(intent, "Share To:"))
 
         }
     }
