@@ -1,7 +1,6 @@
 package com.example.module_19.fragment
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,30 +8,27 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Fade
-import androidx.transition.Scene
-import androidx.transition.Slide
-import androidx.transition.TransitionManager
-import androidx.transition.TransitionSet
 import androidx.transition.Visibility
+import com.example.module_19.AnimationHelper
 import com.example.module_19.Film
 import com.example.module_19.FilmListRecyclerAdapter
 import com.example.module_19.MainActivity
 import com.example.module_19.R
 import com.example.module_19.TopSpacingItemDecoration
 import com.example.module_19.databinding.FragmentHomeBinding
-import com.example.module_19.databinding.MergeHomeScreenContentBinding
 import java.util.Locale
 
 @Suppress("UNREACHABLE_CODE")
 class HomeFragment : Fragment() {
 
     init {
-        exitTransition = Fade(Visibility.MODE_OUT).apply { duration = 400;mode = Fade.MODE_OUT}
+        exitTransition = Fade(Visibility.MODE_OUT).apply { duration = 400;mode = Fade.MODE_OUT }
         reenterTransition = Fade(Visibility.MODE_IN).apply { duration = 800 }
     }
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var binding2: MergeHomeScreenContentBinding
+
+    //private lateinit var binding2: MergeHomeScreenContentBinding
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     val filmsDataBase = listOf(
         Film(
@@ -86,6 +82,14 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        AnimationHelper.performFragmentCircularRevealAnimation(
+            binding.homeFragmentRoot,
+            requireActivity(),
+            1
+        )
+
+        /* Анимация появления Recycle View с низу и Search View с верху
         binding2 =
             MergeHomeScreenContentBinding.inflate(layoutInflater, binding.homeFragmentRoot, false)
         val scene = Scene(binding.homeFragmentRoot, binding2.root)
@@ -103,7 +107,11 @@ class HomeFragment : Fragment() {
         }
         //Также запускаем через TransitionManager, но вторым параметром передаем нашу кастомную анимацию
         TransitionManager.go(scene, customTransition)
-        val main_recycler = binding2.mainRecycler
+
+
+         */
+
+        val main_recycler = binding.mainRecycler
         //находим наш RV
         main_recycler.apply {
             //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
@@ -126,7 +134,7 @@ class HomeFragment : Fragment() {
         filmsAdapter.addItems(filmsDataBase)
 
         //для нажатия на поля поиска целиком, а не только на лупу
-        val search_view = binding2.searchView
+        val search_view = binding.searchView
         search_view.setOnClickListener {
             search_view.isIconified = false
         }

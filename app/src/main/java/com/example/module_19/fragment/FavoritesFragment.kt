@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.module_19.AnimationHelper
 import com.example.module_19.Film
 import com.example.module_19.FilmListRecyclerAdapter
 import com.example.module_19.MainActivity
@@ -49,6 +50,12 @@ class FavoritesFragment : Fragment() {
         }
         //Кладем нашу БД в RV
         filmsAdapter.addItems(favoritesList)
+
+        AnimationHelper.performFragmentCircularRevealAnimation(
+            binding.fragmentFavoritesRoot,
+            requireActivity(),
+            2
+        )
 
     }
 
