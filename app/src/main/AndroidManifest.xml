@@ -29,7 +29,8 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="Film Search"
-            android:theme="@style/Theme.Module_19"></activity>
+            android:theme="@style/Theme.Module_19">
+        </activity>
     </application>
 
 </manifest>
