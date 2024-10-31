@@ -3,5 +3,4 @@
     android:animation="@anim/animation"
     android:interpolator="@android:interpolator/decelerate_cubic"
     android:animationOrder="normal"
-    android:delay="0.1">
-</layoutAnimation>
+    android:delay="0.1"></layoutAnimation>

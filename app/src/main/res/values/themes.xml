@@ -5,4 +5,14 @@
         <item name="colorPrimary">@color/purple_700</item>
         <item name="android:forceDarkAllowed">true</item>
     </style>
+
+    <style name="MyDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@drawable/corner_background</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ThemeSplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/purple_700</item>
+    </style>
+
 </resources>
