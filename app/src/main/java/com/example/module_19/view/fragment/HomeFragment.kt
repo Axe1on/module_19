@@ -1,4 +1,4 @@
-package com.example.module_19.fragment
+package com.example.module_19.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,20 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Fade
 import androidx.transition.Visibility
-import com.example.module_19.AnimationHelper
-import com.example.module_19.Film
-import com.example.module_19.FilmListRecyclerAdapter
-import com.example.module_19.MainActivity
-import com.example.module_19.R
-import com.example.module_19.TopSpacingItemDecoration
+import com.example.module_19.utils.AnimationHelper
+import com.example.module_19.domain.Film
+import com.example.module_19.view.rv_adapter.FilmListRecyclerAdapter
+import com.example.module_19.view.MainActivity
+import com.example.module_19.view.rv_adapter.TopSpacingItemDecoration
 import com.example.module_19.databinding.FragmentHomeBinding
+import com.example.module_19.viewmodel.HomeFragmentViewModel
 import java.util.Locale
 
 @Suppress("UNREACHABLE_CODE")
 class HomeFragment : Fragment() {
+
+    private val viewModel by lazy {
+        ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
+    }
 
     init {
         exitTransition = Fade(Visibility.MODE_OUT).apply { duration = 400;mode = Fade.MODE_OUT }
@@ -30,44 +36,18 @@ class HomeFragment : Fragment() {
 
     //private lateinit var binding2: MergeHomeScreenContentBinding
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
-    val filmsDataBase = listOf(
-        Film(
-            "Веном 3 Последний танец",
-            R.drawable.kino1,
-            "Эдди Брок (Харди) и его верный симбиот Веном путешествуют по стране, разбираясь по пути с разными преступниками и негодяями. Однажды на их след выходят военные, которые хотят поймать Венома для проведения опытов. Им почти удается достигнуть своей цели, однако всё меняется, когда на Землю вторгается целая армия симбиотов, намеренная поработить всё человечество."
-        , 9.5f),
-        Film(
-            "Крейвен-охотник",
-            R.drawable.kino2,
-            "Сергей Кравинов (Аарон Тейлор-Джонсон) — сын аристократа (Рассел Кроу), который был вынужден бежать из России в Штаты после Февральской революции 1917 года. Сергей, с одной стороны, является отличным охотником, а с другой, защищает мир животных от людей. Он не носит супергеройского трико. Чтобы получать сверхспособности, ему необходимо пить специальный отвар из африканских трав, но по-настоящему опасным его делают охотничьи таланты. Так он становится Крэйвеном-охотником. Чтобы доказать всем, что является альфа-самцом, он решается разобраться с крупной дичью — Человеком-пауком. Супергеройский блокбастер Джей Си Чендора («Самый жестокий год» и «Тройная граница») расширяет киновселенную Человека-паука и представляет одного из его самых опасных соперников."
-        ,7.0f),
-        Film(
-            "Дэдпул и Росомаха",
-            R.drawable.kino3,
-            "Уэйд Уилсон попадает в организацию «Управление временными изменениями», что вынуждает его вернуться к своему альтер-эго Дэдпулу и изменить историю с помощью Росомахи."
-        ,8.2f),
-        Film(
-            "Головоломка 2",
-            R.drawable.kino4,
-            "Мозг Райли внезапно подвергается капитальному ремонту в тот момент, когда необходимо освободить место для кое-чего совершенно неожиданного: новых эмоций. Радость, Грусть, Гнев, Страх и Отвращение никак не ожидали появления некой Тревожности. И похоже, не только её."
-        ,8.4f),
-        Film(
-            "Дюна Часть вторая",
-            R.drawable.kino5,
-            "Герцог Пол Атрейдес присоединяется к фременам, чтобы стать Муад Дибом, одновременно пытаясь остановить наступление войны."
-        ,8.7f),
-        Film(
-            "Артур, ты король",
-            R.drawable.kino6,
-            "Это было последнее соревнование капитана по приключенческим гонкам Майкла Лайта, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь."
-        ,8.1f),
-        Film(
-            "Человек-паук Паутина вселенных",
-            R.drawable.kino7,
-            "После воссоединения с Гвен Стейси дружелюбный сосед Человек-Паук попадает из Бруклина в Мультивселенную, где встречает команду Паучков, защищающих само её существование. Пытаясь справиться с новой угрозой, Майлз сталкивается с Пауками из других вселенных. Настаёт момент, когда ему необходимо решить, что значит быть героем, спасающим тех, кого любишь больше всего."
-        ,8.8f),
 
-        )
+    //Создадим переменную, куда будем класть нашу БД из ViewModel, чтобы у нас не сломался поиск:
+    private var filmsDataBase = listOf<Film>()
+        //Используем backing field
+        set(value) {
+            //Если придет такое же значение, то мы выходим из метода
+            if (field == value) return
+            //Если пришло другое значение, то кладем его в переменную
+            field = value
+            //Обновляем RV адаптер
+            filmsAdapter.addItems(field)
+        }
 
 
     override fun onCreateView(
@@ -82,6 +62,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //подпишемся на изменения этой View Model
+        viewModel.filmsListLifeData.observe(viewLifecycleOwner, Observer<List<Film>> {
+            filmsDataBase = it
+        })
 
         AnimationHelper.performFragmentCircularRevealAnimation(
             binding.homeFragmentRoot,

@@ -1,9 +1,12 @@
-package com.example.module_19
+package com.example.module_19.view.rv_adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.module_19.view.rv_viewholder.FilmViewHolder
+import com.example.module_19.R
+import com.example.module_19.domain.Film
 
 //в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса активити
 class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) :
@@ -21,7 +24,7 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) :
         )
     }
 
-    //В этом методе будет привзяка полей из объекта com.example.module_19.Film, к view из film_item.xml
+    //В этом методе будет привзяка полей из объекта com.example.module_19.domain.Film, к view из film_item.xml
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         //Проверяем какой у нас ViewHolder
         when (holder) {

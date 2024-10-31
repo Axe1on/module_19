@@ -1,4 +1,4 @@
-package com.example.module_19
+package com.example.module_19.view
 
 import android.content.Intent
 import android.os.Bundle

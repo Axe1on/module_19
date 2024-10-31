@@ -8,7 +8,6 @@ import android.graphics.RectF
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
-import androidx.core.content.contentValuesOf
 import com.example.module_19.R
 
 class RatingDonutView @JvmOverloads constructor(

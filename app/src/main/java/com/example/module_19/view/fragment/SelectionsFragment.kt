@@ -1,11 +1,11 @@
-package com.example.module_19.fragment
+package com.example.module_19.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.module_19.AnimationHelper
+import com.example.module_19.utils.AnimationHelper
 import com.example.module_19.databinding.FragmentSelectionsBinding
 
 class SelectionsFragment : Fragment() {

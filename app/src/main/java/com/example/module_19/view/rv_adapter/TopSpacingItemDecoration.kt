@@ -1,4 +1,4 @@
-package com.example.module_19
+package com.example.module_19.view.rv_adapter
 
 import android.content.res.Resources
 import android.graphics.Rect

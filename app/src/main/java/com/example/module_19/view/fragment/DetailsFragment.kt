@@ -1,4 +1,4 @@
-package com.example.module_19
+package com.example.module_19.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.transition.Fade
 import androidx.transition.Visibility
+import com.example.module_19.R
 import com.example.module_19.databinding.FragmentDetailsBinding
+import com.example.module_19.domain.Film
 
 class DetailsFragment : Fragment() {
 

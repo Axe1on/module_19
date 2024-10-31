@@ -1,4 +1,4 @@
-package com.example.module_19
+package com.example.module_19.domain
 
 import android.os.Parcel
 import android.os.Parcelable
