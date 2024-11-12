@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.transition.Fade
 import androidx.transition.Visibility
+import com.bumptech.glide.Glide
 import com.example.module_19.R
+import com.example.module_19.data.ApiConstants
 import com.example.module_19.databinding.FragmentDetailsBinding
 import com.example.module_19.domain.Film
 
@@ -71,7 +73,10 @@ class DetailsFragment : Fragment() {
         //Устанавливаем заголовок
         binding.detailsToolbar.title = film.title
         //Устанавливаем картинку
-        binding.detailsPoster.setImageResource(film.poster)
+        Glide.with(this)
+            .load(ApiConstants.IMAGES_URL + "w780" + film.poster)
+            .centerCrop()
+            .into(binding.detailsPoster)
         //Устанавливаем описание
         binding.detailsDescription.text = film.description
 

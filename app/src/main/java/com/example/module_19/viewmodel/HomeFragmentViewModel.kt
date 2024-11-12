@@ -6,12 +6,24 @@ import com.example.module_19.App
 import com.example.module_19.domain.Film
 import com.example.module_19.domain.Interactor
 
-class HomeFragmentViewModel : ViewModel(){
-    val filmsListLifeData = MutableLiveData<List<Film>>()
+class HomeFragmentViewModel : ViewModel() {
+    val filmsListLiveData:  MutableLiveData<List<Film>> = MutableLiveData()
     //Инициализируем интерактор
-    private var interactor : Interactor = App.instance.interactor
+    private var interactor: Interactor = App.instance.interactor
+
     init {
-        val film = interactor.getFilmDB()
-        filmsListLifeData.postValue(film)
+        interactor.getFilmsFromApi(1, object : ApiCallback {
+            override fun onSuccess(films: List<Film>) {
+                filmsListLiveData.postValue(films)
+            }
+
+            override fun onFailure() {
+            }
+        })
+    }
+
+    interface ApiCallback {
+        fun onSuccess(films: List<Film>)
+        fun onFailure()
     }
 }
