@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">module_19</string>
+    <string name="settings_title">Settings</string>
+    <string name="favorites_title">Favorites</string>
+    <string name="watch_later_title">Watch later</string>
+    <string name="selections_title">Selection</string>
+    <string name="home_title">main page</string>
+</resources>
