@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.module_19.utils.AnimationHelper
 import com.example.module_19.databinding.FragmentSelectionsBinding
+import com.example.module_19.utils.AnimationHelper
 
 class SelectionsFragment : Fragment() {
 

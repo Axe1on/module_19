@@ -16,6 +16,7 @@ class FilmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val title = itemView.findViewById<TextView>(R.id.title)
     private val poster = itemView.findViewById<ImageView>(R.id.poster)
     private val description = itemView.findViewById<TextView>(R.id.description)
+
     //Вот здесь мы находим в верстке наш прогресс бар для рейтинга
     private val ratingDonut = itemView.findViewById<RatingDonutView>(R.id.rating_donut)
 
@@ -28,7 +29,7 @@ class FilmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         //Указываем контейнер, в котором будет "жить" наша картинка
         Glide.with(itemView)
             //Загружаем сам ресурс
-            .load(ApiConstants.IMAGES_URL + "w342"+ film.poster)//"w342" — это размер изображения, который нужно загрузить
+            .load(ApiConstants.IMAGES_URL + "w342" + film.poster)//"w342" — это размер изображения, который нужно загрузить
             //Центруем изображение
             .centerCrop()
             //Указываем ImageView, куда будем загружать изображение

@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.module_19.R
 import com.example.module_19.databinding.ActivityMainBinding
 import com.example.module_19.domain.Film
+import com.example.module_19.view.fragment.DetailsFragment
 import com.example.module_19.view.fragment.FavoritesFragment
 import com.example.module_19.view.fragment.HomeFragment
 import com.example.module_19.view.fragment.SelectionsFragment
 import com.example.module_19.view.fragment.WatchLaterFragment
-import com.example.module_19.view.fragment.DetailsFragment
 import com.example.module_19.view.rv_adapter.FilmListRecyclerAdapter
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
