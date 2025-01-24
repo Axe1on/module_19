@@ -137,25 +137,26 @@ class RatingDonutView @JvmOverloads constructor(
         //Рисуем задний фон(Желательно его отрисовать один раз в bitmap, так как он статичный)
         canvas.drawCircle(0f, 0f, radius, circlePaint)
         //Рисуем "арки", из них и будет состоять наше кольцо + у нас тут специальный метод
-        canvas.drawArc(oval, -90f, convertProgressToDegrees(progress),false,strokePaint)
+        canvas.drawArc(oval, -90f, convertProgressToDegrees(progress), false, strokePaint)
         //Восстанавливаем канвас
         canvas.restore()
     }
+
     /*Также у нас есть специальный метод для отрисовки наших арок, ведь прогресс у нас от 0 до 100, а
     круг 360 градусов, поэтому надо конвертировать эти значения, вот так выглядит метод для конвертации*/
-    private fun convertProgressToDegrees(progress: Int) : Float = progress * 3.6f
+    private fun convertProgressToDegrees(progress: Int): Float = progress * 3.6f
 
     //Теперь нам нужен метод для отрисовки текста
-    private fun drawText(canvas: Canvas){
+    private fun drawText(canvas: Canvas) {
         //Форматируем текст, чтобы мы выводили дробное число с одной цифрой после точки
-        val message = String.format("%.1f",progress /10f)
+        val message = String.format("%.1f", progress / 10f)
         //Получаем ширину и высоту текста, чтобы компенсировать их при отрисовке, чтобы текст был точно в центре
         val widths = FloatArray(message.length)
         digitPaint.getTextWidths(message, widths)
         var advance = 0f
-        for(width in widths) advance +=width
+        for (width in widths) advance += width
         //Рисуем наш текст
-        canvas.drawText(message, centerX - advance / 2, centerY + advance /4 , digitPaint)
+        canvas.drawText(message, centerX - advance / 2, centerY + advance / 4, digitPaint)
     }
 
     //Ну и теперь только осталось отрисовать наше View в переопределённом методе onDraw:
@@ -170,7 +171,7 @@ class RatingDonutView @JvmOverloads constructor(
     // <declare-styleable name="RatingDonutView"> — должно соответствовать названию класса.
 
     //осталось только реализовать метод, чтобы мы могли из кода задать рейтинг
-    fun setProgress(pr:Int){
+    fun setProgress(pr: Int) {
         progress = pr
         //Создаем краски с новыми цветами
         initPaint()
