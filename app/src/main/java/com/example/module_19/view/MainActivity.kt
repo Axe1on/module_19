@@ -16,6 +16,7 @@ import com.example.module_19.view.fragment.DetailsFragment
 import com.example.module_19.view.fragment.FavoritesFragment
 import com.example.module_19.view.fragment.HomeFragment
 import com.example.module_19.view.fragment.SelectionsFragment
+import com.example.module_19.view.fragment.SettingsFragment
 import com.example.module_19.view.fragment.WatchLaterFragment
 import com.example.module_19.view.rv_adapter.FilmListRecyclerAdapter
 import com.google.android.material.appbar.MaterialToolbar
@@ -114,6 +115,13 @@ class MainActivity : AppCompatActivity() {
                     val tag = "selections"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: SelectionsFragment(), tag)
+                    true
+                }
+
+                R.id.settings -> {
+                    val tag = "settings"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment( fragment?: SettingsFragment(), tag)
                     true
                 }
 
