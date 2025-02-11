@@ -1,6 +1,7 @@
 package com.example.module_19.domain
 
 import com.example.module_19.data.API
+import com.example.module_19.data.Entity.Film
 import com.example.module_19.data.Entity.TmdbResultsDto
 import com.example.module_19.data.MainRepository
 import com.example.module_19.data.PreferenceProvider
@@ -28,7 +29,7 @@ class Interactor(
                     val list = Converter.convertApiListToDtoList(response.body()?.tmdbFilms)
                     //Кладем фильм в бд
                     list.forEach {
-                        repo.putToDb(film = it)
+                        repo.putToDb(list)
                     }
                     callback.onSuccess(list)
                 }

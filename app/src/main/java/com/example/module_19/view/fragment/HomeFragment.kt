@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Fade
 import androidx.transition.Visibility
 import com.example.module_19.databinding.FragmentHomeBinding
-import com.example.module_19.domain.Film
+import com.example.module_19.data.Entity.Film
 import com.example.module_19.utils.AnimationHelper
 import com.example.module_19.view.MainActivity
 import com.example.module_19.view.rv_adapter.FilmListRecyclerAdapter

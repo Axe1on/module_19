@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.parcelize)
     alias(libs.plugins.kapt)
 
 }
@@ -11,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.module_19"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -38,17 +39,15 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
+
+//    composeOptions {
+//        kotlinCompilerExtensionVersion = "1.5.14"
+//    }
+//    packaging {
+//        resources {
+//            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+//        }
+//    }
     buildFeatures {
         viewBinding = true
         buildConfig = true
@@ -94,4 +93,9 @@ dependencies {
     implementation(libs.dagger.android.support)
     kapt(libs.dagger.compiler)
     kapt(libs.dagger.android.processor)
+
+    /** ROOM */
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
 }

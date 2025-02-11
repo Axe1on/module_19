@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.module_19.R
 import com.example.module_19.data.ApiConstants
 import com.example.module_19.databinding.FragmentDetailsBinding
-import com.example.module_19.domain.Film
+import com.example.module_19.data.Entity.Film
 
 class DetailsFragment : Fragment() {
 
