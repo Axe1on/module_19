@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.module_19"
-        minSdk = 26
+        minSdk = 24
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -40,14 +40,14 @@ android {
         jvmTarget = "17"
     }
 
-//    composeOptions {
-//        kotlinCompilerExtensionVersion = "1.5.14"
-//    }
-//    packaging {
-//        resources {
-//            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-//        }
-//    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
     buildFeatures {
         viewBinding = true
         buildConfig = true
@@ -83,9 +83,9 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.5.2")
 
     //Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:3.12.6")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:3.12.6")
 
     /** Dagger2 */
     implementation(libs.dagger)
