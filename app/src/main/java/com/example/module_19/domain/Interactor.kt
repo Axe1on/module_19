@@ -1,5 +1,6 @@
 package com.example.module_19.domain
 
+import androidx.lifecycle.LiveData
 import com.example.module_19.data.API
 import com.example.module_19.data.Entity.Film
 import com.example.module_19.data.Entity.TmdbResultsDto
@@ -31,7 +32,7 @@ class Interactor(
                     list.forEach {
                         repo.putToDb(list)
                     }
-                    callback.onSuccess(list)
+                    callback.onSuccess()
                 }
 
                 override fun onFailure(call: Call<TmdbResultsDto>, t: Throwable) {
@@ -42,7 +43,7 @@ class Interactor(
     }
 
     //Метод для получения фильмов из БД
-    fun getFilmsFromDB(): List<Film> = repo.getAllFromDB()
+    fun getFilmsFromDB(): LiveData<List<Film>> = repo.getAllFromDB()
 
     //Метод для сохранения настроек
     fun saveDefaultCategoryToPreferences(category: String) {
