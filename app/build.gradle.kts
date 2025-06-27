@@ -98,4 +98,8 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     kapt(libs.room.compiler)
+
+    //Coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2")
 }
