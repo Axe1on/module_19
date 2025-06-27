@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.module_19.R
 import com.example.module_19.customview.RatingDonutView
 import com.example.module_19.data.ApiConstants
-import com.example.module_19.domain.Film
+import com.example.module_19.data.Entity.Film
 
 //В конструктор класс передается layout, который мы создали(film_item.xml)
 class FilmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

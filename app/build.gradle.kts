@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.parcelize)
     alias(libs.plugins.kapt)
 
 }
@@ -38,9 +39,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    buildFeatures {
-        compose = true
-    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.14"
     }
@@ -84,9 +83,9 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.5.2")
 
     //Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:3.12.6")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:3.12.6")
 
     /** Dagger2 */
     implementation(libs.dagger)
@@ -94,4 +93,9 @@ dependencies {
     implementation(libs.dagger.android.support)
     kapt(libs.dagger.compiler)
     kapt(libs.dagger.android.processor)
+
+    /** ROOM */
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
 }

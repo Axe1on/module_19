@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,12 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Fade
 import androidx.transition.Visibility
 import com.example.module_19.databinding.FragmentHomeBinding
-import com.example.module_19.domain.Film
+import com.example.module_19.data.Entity.Film
 import com.example.module_19.utils.AnimationHelper
 import com.example.module_19.view.MainActivity
 import com.example.module_19.view.rv_adapter.FilmListRecyclerAdapter
 import com.example.module_19.view.rv_adapter.TopSpacingItemDecoration
 import com.example.module_19.viewmodel.HomeFragmentViewModel
+import com.google.android.material.snackbar.Snackbar
 import java.util.Locale
 
 @Suppress("UNREACHABLE_CODE")
@@ -77,6 +79,16 @@ class HomeFragment : Fragment() {
             filmsDataBase = it
             filmsAdapter.addItems(it)
         })
+
+        //прогресс бар при загрузке списка
+        viewModel.showProgressBar.observe(viewLifecycleOwner,Observer<Boolean> {
+            binding.progressBar.isVisible = it
+        })
+
+        // Наблюдаем за ошибками
+        viewModel.showErrorToast.observe(viewLifecycleOwner){
+            showErrorSnackbar() // или showErrorToast()
+        }
     }
 
     private fun initSearchView() {
@@ -151,5 +163,10 @@ class HomeFragment : Fragment() {
             //Убираем крутящиеся колечко
             binding.pullToRefresh.isRefreshing = false
         }
+    }
+
+    //функция дляы наблюдения за ошибками
+    private fun showErrorSnackbar(){
+        Snackbar.make(requireView(),"Ошибка при загрузке данных", Snackbar.LENGTH_LONG).show()
     }
 }

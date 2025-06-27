@@ -1,6 +1,8 @@
 package com.example.module_19.domain
 
+import androidx.lifecycle.LiveData
 import com.example.module_19.data.API
+import com.example.module_19.data.Entity.Film
 import com.example.module_19.data.Entity.TmdbResultsDto
 import com.example.module_19.data.MainRepository
 import com.example.module_19.data.PreferenceProvider
@@ -25,7 +27,12 @@ class Interactor(
                     response: Response<TmdbResultsDto>
                 ) {
                     //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
-                    callback.onSuccess(Converter.convertApiListToDtoList(response.body()?.tmdbFilms))
+                    val list = Converter.convertApiListToDtoList(response.body()?.tmdbFilms)
+                    //Кладем фильм в бд
+                    list.forEach {
+                        repo.putToDb(list)
+                    }
+                    callback.onSuccess()
                 }
 
                 override fun onFailure(call: Call<TmdbResultsDto>, t: Throwable) {
@@ -34,6 +41,9 @@ class Interactor(
                 }
             })
     }
+
+    //Метод для получения фильмов из БД
+    fun getFilmsFromDB(): LiveData<List<Film>> = repo.getAllFromDB()
 
     //Метод для сохранения настроек
     fun saveDefaultCategoryToPreferences(category: String) {

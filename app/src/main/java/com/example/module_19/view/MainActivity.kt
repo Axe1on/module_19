@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module_19.R
 import com.example.module_19.databinding.ActivityMainBinding
-import com.example.module_19.domain.Film
+import com.example.module_19.data.Entity.Film
 import com.example.module_19.view.fragment.DetailsFragment
 import com.example.module_19.view.fragment.FavoritesFragment
 import com.example.module_19.view.fragment.HomeFragment
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.settings -> {
                     val tag = "settings"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: SettingsFragment(), tag)
+                    changeFragment(fragment ?: SettingsFragment(), tag)
                     true
                 }
 

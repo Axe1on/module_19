@@ -21,6 +21,9 @@ dagger = "2.50"
 daggerAndroid = "2.47"
 swiperefreshlayout = "1.1.0"
 
+room = "2.6.1"
+
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -52,8 +55,14 @@ dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", versi
 dagger-android-processor = { group = "com.google.dagger", name = "dagger-android-processor", version.ref = "daggerAndroid" }
 androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
 
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+
+parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
