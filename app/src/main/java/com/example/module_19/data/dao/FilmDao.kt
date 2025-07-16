@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.module_19.data.Entity.Film
+import kotlinx.coroutines.flow.Flow
 
 //Помечаем, что это не просто интерфейс, а Dao-объект
 
@@ -13,7 +14,7 @@ import com.example.module_19.data.Entity.Film
 interface FilmDao {
     //Запрос на всю таблицу
     @Query("SELECT * FROM cached_films")
-    fun getCachedFilms(): LiveData<List<Film>>
+    fun getCachedFilms(): Flow<List<Film>>
 
     //Кладём списком в БД, в случае конфликта перезаписываем
     @Insert(onConflict = OnConflictStrategy.REPLACE)

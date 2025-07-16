@@ -20,6 +20,11 @@ import com.example.module_19.view.rv_adapter.FilmListRecyclerAdapter
 import com.example.module_19.view.rv_adapter.TopSpacingItemDecoration
 import com.example.module_19.viewmodel.HomeFragmentViewModel
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Locale
 
 @Suppress("UNREACHABLE_CODE")
@@ -38,7 +43,7 @@ class HomeFragment : Fragment() {
 
     //private lateinit var binding2: MergeHomeScreenContentBinding
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
-
+    private lateinit var scope: CoroutineScope
     //Создадим переменную, куда будем класть нашу БД из ViewModel, чтобы у нас не сломался поиск:
     private var filmsDataBase = listOf<Film>()
         //Используем backing field
@@ -75,15 +80,29 @@ class HomeFragment : Fragment() {
         //находим наш RV
         initRecyckler()
         //Кладем нашу БД в RV
+        /*//было
         viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>> {
             filmsDataBase = it
             filmsAdapter.addItems(it)
-        })
-
-        //прогресс бар при загрузке списка
-        viewModel.showProgressBar.observe(viewLifecycleOwner,Observer<Boolean> {
-            binding.progressBar.isVisible = it
-        })
+        })*/
+        //стало
+        scope = CoroutineScope(Dispatchers.IO).also { scope ->
+            scope.launch {
+                viewModel.filmsListData.collect {
+                    withContext(Dispatchers.Main) {
+                        filmsAdapter.addItems(it)
+                        filmsDataBase = it
+                    }
+                }
+            }
+            scope.launch {
+                for (element in viewModel.showProgressBar) {
+                    launch(Dispatchers.Main) {
+                        binding.progressBar.isVisible = element
+                    }
+                }
+            }
+        }
 
         // Наблюдаем за ошибками
         viewModel.showErrorToast.observe(viewLifecycleOwner){
@@ -168,5 +187,11 @@ class HomeFragment : Fragment() {
     //функция дляы наблюдения за ошибками
     private fun showErrorSnackbar(){
         Snackbar.make(requireView(),"Ошибка при загрузке данных", Snackbar.LENGTH_LONG).show()
+    }
+
+    //Чтобы у нас Корутины не продолжали работать, когда наш фрагмент будет уничтожен
+    override fun onStop() {
+        super.onStop()
+        scope.cancel()
     }
 }
